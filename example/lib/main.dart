@@ -160,7 +160,6 @@ class _ExampleField extends StatelessWidget {
     this.validator,
     this.customField,
     this.keyboardType,
-    this.obscureText = false,
   });
 
   final String label;
@@ -168,7 +167,6 @@ class _ExampleField extends StatelessWidget {
   final ValidatorFunction? validator;
   final Widget? customField;
   final TextInputType? keyboardType;
-  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +177,6 @@ class _ExampleField extends StatelessWidget {
           TextFormField(
             controller: controller,
             keyboardType: keyboardType,
-            obscureText: obscureText,
             validator: validator,
             decoration: InputDecoration(
               labelText: label,
