@@ -4,6 +4,16 @@ All notable changes to this package will be documented in this file.
 
 The format is based on Keep a Changelog, and this project follows semantic versioning.
 
+## 0.1.0
+
+### Added
+
+- Reusable `PasswordInputField` widget with show and hide toggle support
+- Live password strength indicator and validation hint chips
+- Confirm password matching support built into the widget
+- Caps lock warning styling for password entry flows
+- Widget tests covering visibility toggle, strength feedback, and password matching
+
 ## 0.0.1
 
 Initial release.
