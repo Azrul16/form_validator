@@ -1,4 +1,4 @@
-import 'package:form_validator/form_validator.dart';
+import 'package:form_validator_plus/form_validator_plus.dart';
 import 'package:test/test.dart';
 
 void main() {

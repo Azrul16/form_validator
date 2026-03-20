@@ -1,6 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
+import 'package:form_validator_plus/form_validator_plus.dart';
 
 void main() {
   runApp(

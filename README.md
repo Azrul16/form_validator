@@ -1,8 +1,8 @@
-# form_validator
+# form_validator_plus
 
 A lightweight and composable Flutter form validation package with clean, reusable validators for common form fields.
 
-`form_validator` helps keep validation logic out of your widget tree while still feeling simple to read and easy to customize.
+`form_validator_plus` helps keep validation logic out of your widget tree while still feeling simple to read and easy to customize.
 
 ## Features
 
@@ -35,7 +35,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  form_validator: ^0.0.1
+  form_validator_plus: ^0.0.1
 ```
 
 Then run:
@@ -47,7 +47,7 @@ flutter pub get
 ## Import
 
 ```dart
-import 'package:form_validator/form_validator.dart';
+import 'package:form_validator_plus/form_validator_plus.dart';
 ```
 
 ## Quick Start
@@ -238,7 +238,7 @@ Run tests with:
 dart test
 ```
 
-## Why Use form_validator
+## Why Use form_validator_plus
 
 - Reduces repeated validation code across projects
 - Keeps widget code easier to read
