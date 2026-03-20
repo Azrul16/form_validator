@@ -11,6 +11,7 @@ A lightweight and composable Flutter form validation package with clean, reusabl
 - Custom error messages for every validator
 - Optional-field support with `allowEmpty`
 - Password rule validation with configurable requirements
+- Reusable `PasswordInputField` widget with polished password UX
 - Ready to use with `TextFormField.validator`
 
 ## Included Validators
@@ -59,6 +60,39 @@ TextFormField(
     FormValidator.required(),
     FormValidator.email(),
   ]),
+)
+```
+
+## Password Widget
+
+The package also ships with a reusable `PasswordInputField` that includes:
+
+- show and hide toggle
+- password strength indicator
+- live validation hints
+- caps lock warning styling
+- confirm password matching
+
+```dart
+PasswordInputField(
+  controller: passwordController,
+  validator: FormValidator.required(),
+  minLength: 8,
+  requireUppercase: true,
+  requireLowercase: true,
+  requireNumber: true,
+  requireSpecialChar: true,
+)
+```
+
+```dart
+PasswordInputField(
+  controller: confirmPasswordController,
+  labelText: 'Confirm Password',
+  validator: FormValidator.required(),
+  matchController: passwordController,
+  validateAgainstPolicy: false,
+  showStrengthIndicator: false,
 )
 ```
 
@@ -214,6 +248,7 @@ The example demonstrates:
 - single validators
 - combined validators
 - password rules
+- reusable password input widget
 - confirm password validation
 - optional URL validation
 
