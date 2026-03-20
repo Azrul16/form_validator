@@ -6,67 +6,65 @@ void main() {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => const FormValidatorExampleApp(),
+      builder: (context) => const FormValidatorDemoApp(),
     ),
   );
 }
 
-class FormValidatorExampleApp extends StatelessWidget {
-  const FormValidatorExampleApp({super.key});
+class FormValidatorDemoApp extends StatelessWidget {
+  const FormValidatorDemoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      title: 'form_validator example',
+      title: 'form_validator demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0F766E)),
         useMaterial3: true,
       ),
-      home: const ExampleFormPage(),
+      home: const DemoFormPage(),
     );
   }
 }
 
-class ExampleFormPage extends StatefulWidget {
-  const ExampleFormPage({super.key});
+class DemoFormPage extends StatefulWidget {
+  const DemoFormPage({super.key});
 
   @override
-  State<ExampleFormPage> createState() => _ExampleFormPageState();
+  State<DemoFormPage> createState() => _DemoFormPageState();
 }
 
-class _ExampleFormPageState extends State<ExampleFormPage> {
+class _DemoFormPageState extends State<DemoFormPage> {
   final _formKey = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _usernameController = TextEditingController();
-  final _websiteController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _websiteController = TextEditingController();
 
   @override
   void dispose() {
-    _passwordController.dispose();
     _nameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
     _usernameController.dispose();
-    _websiteController.dispose();
+    _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _websiteController.dispose();
     super.dispose();
   }
 
-  void _submit() {
+  void _validate() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          isValid
-              ? 'All fields look good.'
-              : 'Please fix the highlighted fields.',
+          isValid ? 'Form is valid.' : 'Please fix the highlighted fields.',
         ),
       ),
     );
@@ -75,7 +73,7 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('form_validator example')),
+      appBar: AppBar(title: const Text('form_validator manual test')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -84,12 +82,12 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _LabeledField(
+                _DemoField(
                   label: 'Name',
                   controller: _nameController,
                   validator: FormValidator.required(),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Email',
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -98,13 +96,13 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
                     FormValidator.email(),
                   ]),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Phone',
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                   validator: FormValidator.phone(),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Username',
                   controller: _usernameController,
                   validator: FormValidator.username(
@@ -112,7 +110,7 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
                     maxLength: 16,
                   ),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Password',
                   controller: _passwordController,
                   obscureText: true,
@@ -124,7 +122,7 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
                     requireSpecialChar: true,
                   ),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Confirm Password',
                   controller: _confirmPasswordController,
                   obscureText: true,
@@ -132,7 +130,7 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
                     _passwordController.text,
                   )(value),
                 ),
-                _LabeledField(
+                _DemoField(
                   label: 'Website',
                   controller: _websiteController,
                   keyboardType: TextInputType.url,
@@ -140,8 +138,8 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
                 ),
                 const SizedBox(height: 20),
                 FilledButton(
-                  onPressed: _submit,
-                  child: const Text('Validate Form'),
+                  onPressed: _validate,
+                  child: const Text('Test Validators'),
                 ),
               ],
             ),
@@ -152,8 +150,8 @@ class _ExampleFormPageState extends State<ExampleFormPage> {
   }
 }
 
-class _LabeledField extends StatelessWidget {
-  const _LabeledField({
+class _DemoField extends StatelessWidget {
+  const _DemoField({
     required this.label,
     required this.controller,
     required this.validator,
