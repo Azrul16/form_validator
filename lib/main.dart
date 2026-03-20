@@ -113,8 +113,11 @@ class _DemoFormPageState extends State<DemoFormPage> {
                 _DemoField(
                   label: 'Password',
                   controller: _passwordController,
-                  obscureText: true,
-                  validator: FormValidator.password(
+                  customField: PasswordInputField(
+                    controller: _passwordController,
+                    labelText: 'Password',
+                    hintText: 'Use 8+ characters with mixed character types',
+                    validator: FormValidator.required(),
                     minLength: 8,
                     requireUppercase: true,
                     requireLowercase: true,
@@ -125,10 +128,17 @@ class _DemoFormPageState extends State<DemoFormPage> {
                 _DemoField(
                   label: 'Confirm Password',
                   controller: _confirmPasswordController,
-                  obscureText: true,
-                  validator: (value) => FormValidator.confirmPassword(
-                    _passwordController.text,
-                  )(value),
+                  customField: PasswordInputField(
+                    controller: _confirmPasswordController,
+                    labelText: 'Confirm Password',
+                    validator: FormValidator.required(
+                      message: 'Please confirm your password.',
+                    ),
+                    matchController: _passwordController,
+                    mismatchMessage: 'Passwords do not match.',
+                    validateAgainstPolicy: false,
+                    showStrengthIndicator: false,
+                  ),
                 ),
                 _DemoField(
                   label: 'Website',
@@ -154,14 +164,16 @@ class _DemoField extends StatelessWidget {
   const _DemoField({
     required this.label,
     required this.controller,
-    required this.validator,
+    this.validator,
+    this.customField,
     this.keyboardType,
     this.obscureText = false,
   });
 
   final String label;
   final TextEditingController controller;
-  final ValidatorFunction validator;
+  final ValidatorFunction? validator;
+  final Widget? customField;
   final TextInputType? keyboardType;
   final bool obscureText;
 
@@ -169,16 +181,18 @@ class _DemoField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        validator: validator,
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-        ),
-      ),
+      child:
+          customField ??
+          TextFormField(
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            validator: validator,
+            decoration: InputDecoration(
+              labelText: label,
+              border: const OutlineInputBorder(),
+            ),
+          ),
     );
   }
 }

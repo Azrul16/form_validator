@@ -1,6 +1,6 @@
 name: form_validator_kit
 description: A lightweight and composable Flutter form validation package with built-in validators for email, phone, password, regex, and more.
-version: 0.0.2
+version: 0.1.0
 homepage: https://github.com/Azrul16/form_validator
 repository: https://github.com/Azrul16/form_validator
 issue_tracker: https://github.com/Azrul16/form_validator/issues
