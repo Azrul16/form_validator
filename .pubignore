@@ -1,0 +1,10 @@
+android/
+ios/
+linux/
+macos/
+web/
+windows/
+.metadata
+form_validator.iml
+lib/main.dart
+test/widget_test.dart
